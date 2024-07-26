@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            display: flex ;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box{
+            height: 50vh;
+            width: 50vh;
+            border: 2px solid black;
+            line-height: 24px;
+        }
+
+        button{
+            padding: 8px 8px;
+        }
+    </style>
+</head>
+<body >
+    <div class="box" id="bo">
+        <div class="pp" id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum sit necessitatibus officia? Voluptatem, voluptas iusto distinctio assumenda saepe est nobis eveniet excepturi, optio repellat in omnis aliquam praesentium odit soluta.</div>
+        <button id="uppercase">uppercase</button>
+        <button id="lowercase">lowercase</button>
+        <button id="inc">+</button>
+        <button id="dec">-</button>
+        <input type="color" id="color">
+        <input type="range" id="range">
+    </div>
+
+    <script>
+        document.getElementById("uppercase").onclick = function(){
+            document.getElementById("para").style.textTransform="uppercase"
+        }
+        document.getElementById("lowercase").onclick = function(){
+            document.getElementById("para").style.textTransform="lowercase"
+        }
+
+        // let counter=0;
+        // document.getElementById("inc").onclick=function(){
+        //     counter++;
+        //     console.log(counter+"px")
+        // }
+        // let decrement=0;
+        // document.getElementById("dec").onclick=function(){
+        //     decrement--;
+        //     console.log(decrement+"px")
+        // }
+
+        let increment=0
+        let decrement=0
+        document.getElementById("inc").onclick=function(){
+            increment++
+            document.getElementById("para").style.fontSize=15+increment+"px"
+        }
+        document.getElementById("dec").onclick=function(){
+            decrement--
+            document.getElementById("para").style.fontSize=15+decrement+"px"
+        }
+
+        document.getElementById("color").oninput=function(){
+           let color = document.getElementById('color').value;
+           console.log(color)
+           document.getElementById("bo").style.backgroundColor=color;
+        }
+
+        document.getElementById("range").oninput=function(){
+           let range = document.getElementById('range').value;
+           document.getElementById("para").style.fontSize=range+"px";
+        }
+
+    </script>
+</body>
+</html>

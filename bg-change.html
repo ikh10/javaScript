@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: space-between;
+        }
+        .color{
+            height: 10vh;
+            width: 10vh;
+            border: 1px solid black;
+            border-radius: 50px;
+        }
+
+        #red{
+            background-color: red;
+        }
+        #green{
+            background-color: green;
+        }
+        #blue{
+            background-color: blue;
+        }
+        #yellow{
+            background-color: yellow;
+        }
+
+    </style>
+</head>
+<body id="bo">
+    <div class="color" id="red"></div>
+    <div class="color" id="blue"></div>
+    <div class="color" id="green"></div>
+    <div class="color" id="yellow"></div>
+
+
+
+    <script>
+
+         // document.getElementById("btn").onclick = function(){
+        //     console.log("hello js")
+        //     alert("hey java script")
+        // }
+        
+        document.getElementById("red").onclick = function(){
+            document.getElementById("bo").style.backgroundColor="Red"
+        }
+        document.getElementById("blue").onclick = function(){
+            document.getElementById("bo").style.backgroundColor="purple"
+        }
+        document.getElementById("green").onclick = function(){
+            document.getElementById("bo").style.backgroundColor="green"
+        }
+        document.getElementById("yellow").onclick = function(){
+            document.getElementById("bo").style.backgroundColor="yellow"
+        }
+
+
+    </script>
+</body>
+</html>

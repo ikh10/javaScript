@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            display: flex ;
+            /* justify-content: center;
+            align-items: center; */
+            height: 100vh;
+        }
+        .box{
+            border: 2px solid black;
+        }
+
+        #A{
+            height: 40vh;
+            width: 40vh;
+        }
+
+        #B{
+            height: 40vh;
+            width: 100vh;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box" id="A">
+        <textarea name="" id="text" rows="20" cols="40"></textarea>
+    </div>
+    <div class="box" id="B"></div>
+
+    <script>
+        document.getElementById("text").oninput = function(){
+            let text=  document.getElementById("text").value 
+            document.getElementById("B").textContent=text
+        }
+    </script>
+</body>
+</html>
