@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Stopwatch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .stopwatch {
+            text-align: center;
+        }
+
+        #display {
+            font-size: 48px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #000;
+            color: #fff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }    
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }  
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="stopwatch">
+        <div id="display">
+            <div  id="hour">00</div>
+            <div>:</div>
+            <div  id="minute">00</div>
+            <div >:</div>
+            <div  id="second">00</div>
+            <div>:</div>
+            <div id="count">00</div>
+        </div>
+    
+        <div class="controls">
+            <button id="start" >Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset" >Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let hour = 0;
+        let minute = 0;
+        let second = 0;
+        let count = 0;
+        let pause = false
+        let myInterval
+
+        function WaStart() {
+            count++;
+            document.getElementById("count").innerHTML = count < 10 ? '0' + count : count;
+
+            if (count == 100) {
+                count = 0;
+                second++;
+                document.getElementById("second").innerHTML = second < 10 ? '0' + second : second;
+
+                if (second == 60) {
+                    second = 0;
+                    minute++;
+                    document.getElementById("minute").innerHTML = minute < 10 ? '0' + minute : minute;
+
+                    if (minute == 60) {
+                        minute = 0;
+                        hour++;
+                        document.getElementById("hour").innerHTML = hour < 10 ? '0' + hour : hour;
+                    }
+                }
+            }
+        }
+        function WaStartTimer(){
+            WaInterval = setInterval(WaStart,10)
+        }
+        function WaStop(){
+            clearInterval(WaInterval);
+        }
+        function Reset(){
+            clearInterval(WaInterval);
+            hour = 0;
+            minute = 0;
+            second = 0;
+            count = 0;
+            document.getElementById("hour").innerHTML = '00';
+            document.getElementById("minute").innerHTML = '00';
+            document.getElementById("second").innerHTML = '00';
+            document.getElementById("count").innerHTML = '00';
+        }
+
+        document.getElementById("start").addEventListener("click", WaStartTimer);
+        document.getElementById("stop").addEventListener("click", WaStop);
+        document.getElementById("reset").addEventListener("click", Reset);
+        
+
+    </script>
+</body>
