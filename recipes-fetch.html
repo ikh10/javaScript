@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Fetch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: rgb(23, 22, 22);
+            color: whitesmoke;
+            align-items: center;
+        }
+
+        div{
+            margin: 20px;
+        }
+
+        h3,h4,p{
+            padding: 10px;
+        }
+
+        .items {
+            width: 25%;
+            text-align: center;
+            border: 2px solid gray;
+            flex-grow: 1;
+            padding: 15px;
+            letter-spacing: 2px;
+            min-height: 300px;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .search{
+            top: 0;
+            width: 100%;
+            border: none;
+            align-items: center;
+            position: sticky;
+            display: flex;
+            justify-content: center;
+            background-color: #40ba37;
+            margin: 0 0 20px 0;
+            z-index: 999;
+        }
+
+        input {
+            width: 40%;
+            height: 40px;
+            border: 2px solid #ffffff;
+            text-align: center;
+            font-style: italic;
+            padding: 0 20px;
+            margin: 15px 0;
+        }
+
+        .type {
+            border: none;
+            cursor: pointer;
+            width: 5%;
+            height: 40px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="search">
+        <input type="text" placeholder="search your items">
+        <button class="type"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    
+    <script>
+        async function FetchData(){
+            try{
+                let response = await fetch('https://dummyjson.com/recipes');
+                let data = await response.json()
+                let recipes=data.recipes
+                let filter_recipes = recipes.filter(item => item.rating > 4.5 && item.difficulty == 'Easy');
+                console.log(filter_recipes)
+            
+                console.log(data.recipes)
+
+                for (let r of filter_recipes){
+                    let div = document.createElement('div');
+                    div.className='items';
+                    let image= document.createElement('img');
+                    let name= document.createElement('h3');
+                    let rating= document.createElement('h4');
+                    let ingredients= document.createElement('p');
+                
+                    name.innerHTML= r.name;
+                    rating.innerHTML= r.rating;
+                    ingredients.innerHTML= r.ingredients;
+                    image.src= r.image;
+
+                    div.append(name)
+                    div.append(image)
+                    div.append(rating)
+                    div.append(ingredients)
+                    
+                    document.body.append(div)
+                }
+            }
+            catch{
+                console.log("data dat da d ...")
+            }
+        }
+        FetchData()
+
+    </script>
+</body>
+</html>
